@@ -1,117 +1,277 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Rishabh Setiya Personal Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rishabh Setiya — Personal Website</title>
+  <meta name="description" content="Rishabh Setiya — Senior Software Engineer (MakeMyTrip). Projects in backend engineering, MLOps, and applied AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --card: #121822;
+      --text: #e7edf5;
+      --muted: #9bb0c3;
+      --accent: #61dafb;
+      --link: #7bd88f;
+      --chip: #1b2533;
+      --ring: rgba(97,218,251,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *,*::before,*::after{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(97,218,251,.08), transparent 60%),
+                  radial-gradient(900px 500px at 120% 20%, rgba(123,216,143,.07), transparent 60%),
+                  var(--bg);
+      color:var(--text); line-height:1.6;
+    }
+    a{ color:var(--link); text-decoration:none }
+    a:hover{ text-decoration:underline }
+    .wrap{ max-width:1100px; margin:0 auto; padding:28px 18px 80px }
+    header.hero{
+      display:grid; grid-template-columns: 120px 1fr; gap:18px; align-items:center; margin-top:10px;
+      padding:18px; border-radius:18px; background:linear-gradient(180deg, rgba(18,24,34,.9), rgba(18,24,34,.7));
+      box-shadow: var(--shadow); border:1px solid rgba(255,255,255,.06);
+    }
+    .avatar{
+      width:110px; height:110px; border-radius:20px; background:var(--chip);
+      display:flex; align-items:center; justify-content:center; font-size:46px; font-weight:800; color:#b7c9db;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    h1{ font-size: clamp(28px, 4vw, 42px); margin:0 0 6px 0; line-height:1.2 }
+    .role{ color:var(--muted); margin:4px 0 8px 0 }
+    .badges{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px }
+    .chip{ padding:6px 10px; border-radius:999px; background:var(--chip); color:#cfe3f7; border:1px solid rgba(255,255,255,.08); font-size:13px }
+    nav.top{ display:flex; gap:16px; margin-top:10px; flex-wrap:wrap }
+    nav.top a{ padding:8px 12px; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,.12) }
+    section{ margin-top:34px }
+    h2{ font-size: 22px; letter-spacing:.2px; margin:0 0 14px 0 }
+    .cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:14px }
+    .card{
+      background: var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:16px; box-shadow:var(--shadow);
+    }
+    .card h3{ margin:0 0 6px 0; font-size:18px }
+    .sub{ color:var(--muted); font-size:14px; margin-bottom:8px }
+    ul{ margin:10px 0 0 18px; padding:0 }
+    li{ margin:6px 0 }
+    .grid-2{ display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)) }
+    .timeline .item{ padding:14px; border-left:3px solid var(--accent); background:var(--card); border-radius:12px; position:relative }
+    .timeline .item::before{ content:""; position:absolute; left:-7px; top:18px; width:12px; height:12px; background:var(--accent); border-radius:99px; box-shadow:0 0 0 6px var(--ring) }
+    .footer{
+      margin-top:48px; padding-top:18px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:14px
+    }
+    .links{ display:flex; gap:12px; flex-wrap:wrap }
+    .pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:12px; background:var(--chip); border:1px solid rgba(255,255,255,.08) }
+    .pill svg{ width:18px; height:18px }
+    .cta{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap }
+    .btn{ display:inline-block; padding:10px 14px; border-radius:12px; background:linear-gradient(180deg, #1f2a3a, #172131); border:1px solid rgba(255,255,255,.10) }
+    .btn:hover{ transform: translateY(-1px) }
+    .tag{ font-weight:700; color:#c0f3ff }
+    @media (prefers-color-scheme: light){
+      :root{ --bg: #f7fafc; --card:#ffffff; --text:#0d1b2a; --muted:#4a5568; --chip:#f1f5f9; --link:#0369a1 }
+      .avatar{ color:#4a5a6b; background:#e6eef6 }
+    }
+    /* simple anchor offset */
+    .anchor{ scroll-margin-top: 90px }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rishabh Setiya",
+    "jobTitle": "Senior Software Engineer",
+    "affiliation": {"@type":"Organization", "name":"MakeMyTrip"},
+    "email": "mailto:rishabhsetiya7@gmail.com",
+    "url": "https://www.linkedin.com/in/rishabh-setiya",
+    "sameAs": [
+      "https://github.com/rishabhsetiya",
+      "https://huggingface.co/spaces/rishabhsetiya/CAIAssignmentGradio",
+      "https://www.credly.com/badges/5555d316-9fed-4857-b778-88496b9df5a7"
+    ]
+  }
+  </script>
 </head>
-
 <body>
-  <table cellspacing="20">
-    <tr>
-      <td><img src="https://raw.githubusercontent.com/rishabhsetiya/cv/master/Rishabh.bmp" alt="Rishabh Profile Pic">
-      </td>
-      <td>
+  <div class="wrap">
+    <header class="hero">
+      <div class="avatar" aria-hidden="true">RS</div>
+      <div>
         <h1>Rishabh Setiya</h1>
-        <p><em>Student, Bachelor of Engineering</em> <br>
-          <strong><a href="http://nsut.ac.in/division/it/">Department of Information Technology</a></strong>
-          <br> <a href="http://nsut.ac.in/">Netaji Subhas University of Technology</a></p>
-        <p>I love exploring various domains of technology and currently focussing on web applications development.</p>
-      </td>
-    </tr>
-  </table>
+        <div class="role">Senior Software Engineer — MakeMyTrip</div>
+        <div class="badges">
+          <span class="chip">Backend Engineering</span>
+          <span class="chip">MLOps</span>
+          <span class="chip">AI &amp; ML (BITS Pilani, WILP)</span>
+          <span class="chip">Kafka • Spring Boot</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#experience">Experience</a>
+          <a class="btn" href="#projects">Projects</a>
+          <a class="btn" href="#education">Education</a>
+          <a class="btn" href="#certs">Certifications</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+    </header>
 
-<hr>
-<h3>Education</h3>
-<ul>
-  <li>
-    Class 12, Central Board of Secondary Education <br>
-    St. Francis de Sales Sr. Sec. Sechool <br> 94%
-  </li>
-  <li>
-    Class 10, Central Board of Secondary Education <br>
-    St. Francis de Sales Sr. Sec. Sechool <br> 10 CGPA
-  </li>
-</ul>
+    <section id="about" class="anchor">
+      <h2>About</h2>
+      <div class="card">
+        <p>I’m a software engineer with experience across backend systems and applied machine learning. I currently build features for <span class="tag">MyBiz</span>, the corporate travel platform at MakeMyTrip, and I’ve previously contributed to platform services and API tooling with Kafka and Spring Boot. I enjoy designing reliable services, shaping data/ML pipelines end to end, and shipping small details that improve user experience.</p>
+      </div>
+    </section>
 
-<hr>
-<h3>Certificates</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Course</th>
-      <th>Year</th>
-    </tr>
-  </thead>
+    <section id="experience" class="anchor">
+      <h2>Experience</h2>
+      <div class="grid-2 timeline">
+        <div class="item">
+          <h3>MakeMyTrip — Senior Software Engineer I</h3>
+          <div class="sub">Apr 2025 — Present • Gurugram / Pune, India</div>
+          <ul>
+            <li>Build critical features for <strong>MyBiz</strong> (corporate travel).</li>
+            <li>Integrated <strong>MyBiz wallet</strong> as a payment gateway for partner companies (daily/monthly limits).</li>
+            <li>Developed multi-currency hotel budgets per country/city.</li>
+            <li>Implemented automated cashback notifications via email.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <h3>BNY — Associate | Back‑end Engineer II</h3>
+          <div class="sub">Jul 2022 — Mar 2025 • Pune, India</div>
+          <ul>
+            <li>Integrated <strong>Kafka</strong> into Spring Boot services to synchronize on‑prem and public cloud platforms.</li>
+            <li>Extended vendor <strong>API Manager</strong> with custom features and guardrails.</li>
+            <li>Hardened legacy code with <strong>JUnit</strong> and <strong>Mockito</strong> tests; resolved security vulnerabilities and dependency issues.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <tr>
-    <td>Certificate Course in German Language </td>
-    <td>2019</td>
-  </tr>
-  <tr>
-    <td>Google India Certified Web Ranger: Student </td>
-    <td>2016-17</td>
-  </tr>
-  <tr>
-    <td>Physics of Semiconductors by Prof. H.C. Verma (IIT Kanpur) </td>
-    <td>2017</td>
-  </tr>
-  <tr>
-    <td>Learning Physics through Simple Experiments by Prof. H.C. Verma (IIT Kanpur) </td>
-    <td>2016</td>
-  </tr>
-</table>
-<hr>
-<h3>Skills</h3>
-<table cellspacing="20">
-  <tr>
-    <td>
-      <table>
-        <tr>
-          <td>C/C++</td>
-          <td>⭐⭐⭐⭐</td>
-        </tr>
-        <tr>
-          <td>Python</td>
-          <td>⭐</td>
-        </tr>
-        <tr>
-          <td>Android Development</td>
-          <td>⭐⭐</td>
-        </tr>
-      </table>
-    </td>
+    <section id="projects" class="anchor">
+      <h2>Selected Projects</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>RAG vs Fine‑Tuned LM for Financial Reports</h3>
+          <div class="sub"><a target="_blank" href="https://huggingface.co/spaces/rishabhsetiya/CAIAssignmentGradio">Code &amp; Live Demo</a></div>
+          <ul>
+            <li>Built FAISS dense vector store + BM25 sparse index for chunk retrieval; hybrid re‑ranking with a cross‑encoder.</li>
+            <li>Used <strong>Mistral‑7B</strong> for generation from retrieved context.</li>
+            <li>Fine‑tuned <strong>TinyLlama</strong> using MoE + PEFT (LoRA) on finance Q&A.</li>
+            <li>Gradio UI to compare retrieval‑augmented vs fine‑tuned responses.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>MLOps Automated Pipeline</h3>
+          <div class="sub"><a target="_blank" href="https://github.com/rishabhsetiya/MLOpsPipeline">GitHub</a></div>
+          <ul>
+            <li>Ingest from Backblaze B2 (S3‑compatible), generate EDA via YData Profiling into <strong>MLflow</strong>.</li>
+            <li>Train and register best of Linear Regression vs DecisionTreeRegressor; build Docker image and deploy.</li>
+            <li>Periodic detection of new data and automated retraining.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>End‑to‑End Data Management Pipeline</h3>
+          <div class="sub"><a target="_blank" href="https://github.com/rishabhsetiya/DataMgmt4MLPipeline">GitHub</a></div>
+          <ul>
+            <li>Customer churn pipeline with DVC for data &amp; model versioning.</li>
+            <li>Data validation via <strong>Great Expectations</strong>, features in <strong>Hopsworks</strong> Feature Store.</li>
+            <li>Feature engineering, model training/evaluation, and SQL Server orchestration.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Stock Price Prediction with Deep LSTM</h3>
+          <div class="sub"><a target="_blank" href="https://github.com/rishabhsetiya/Stock-Price-Prediction-LSTM">GitHub</a></div>
+          <ul>
+            <li>Deep LSTM forecaster in Python; improved accuracy over baseline.</li>
+            <li>Hyperparameter tuning with <strong>Artificial Rabbits Optimization</strong> (ARO).</li>
+            <li>Scaling + sequence generation preprocessing.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <td>
-      <table>
-        <tr>
-          <td>Java</td>
-          <td>⭐⭐⭐⭐</td>
-        </tr>
+    <section id="education" class="anchor">
+      <h2>Education</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>BITS Pilani — M.Tech (AI &amp; ML, WILP)</h3>
+          <div class="sub">2024 — 2026 • CGPA: 8.49 (till Sem 2)</div>
+        </div>
+        <div class="card">
+          <h3>NSIT (Netaji Subhas Institute of Technology) — B.E. IT</h3>
+          <div class="sub">2018 — 2022 • CGPA: 8.66</div>
+        </div>
+      </div>
+    </section>
 
-        <tr>
-          <td>Web Development</td>
-          <td>⭐⭐⭐</td>
-        </tr>
+    <section id="certs" class="anchor">
+      <h2>Certifications</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Microsoft Azure Fundamentals (AZ‑900)</h3>
+          <div class="sub"><a target="_blank" href="https://www.credly.com/badges/5555d316-9fed-4857-b778-88496b9df5a7">Verify</a></div>
+        </div>
+        <div class="card">
+          <h3>WSO2 Certified API Manager — Developer (v3) &amp; Practitioner (v4)</h3>
+          <div class="sub"><a target="_blank" href="https://certification.wso2.com/certificate/CID-04415329">Credential</a></div>
+        </div>
+        <div class="card">
+          <h3>LinkedIn AI Academy &amp; Responsible AI Courses</h3>
+          <div class="sub">Demystifying AI, Prompt Engineering, Foundations of Responsible AI</div>
+        </div>
+      </div>
+    </section>
 
+    <section id="pubs" class="anchor">
+      <h2>Publication</h2>
+      <div class="card">
+        <h3>Citizen e‑governance using Blockchain</h3>
+        <div class="sub">in <em>Blockchain for Smart Cities</em>, Elsevier (2021) — <a target="_blank" href="http://dx.doi.org/10.1016/B978-0-12-824446-3.00010-7">DOI</a></div>
+      </div>
+    </section>
 
-      </table>
-    </td>
-  </tr>
-</table>
+    <section id="extras" class="anchor">
+      <h2>Achievements</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>GATE 2021 — CS</h3>
+          <div class="sub">98.05 percentile • AIR 1985</div>
+        </div>
+      </div>
+    </section>
 
-<hr>
+    <section id="contact" class="anchor">
+      <h2>Contact</h2>
+      <div class="links">
+        <span class="pill">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20v16H2z" opacity=".2"/><path d="M22 6v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6l10 6L22 6zm0-2H2a2 2 0 0 0-2 2l12 7 12-7a2 2 0 0 0-2-2z"/></svg>
+          <a href="mailto:rishabhsetiya7@gmail.com">rishabhsetiya7@gmail.com</a>
+        </span>
+        <span class="pill">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.787 8.207 11.387.6.11.82-.26.82-.58 0-.29-.01-1.06-.017-2.08-3.338.725-4.042-1.61-4.042-1.61-.546-1.387-1.334-1.757-1.334-1.757-1.09-.745.083-.73.083-.73 1.206.085 1.84 1.237 1.84 1.237 1.07 1.832 2.807 1.303 3.492.996.108-.776.418-1.303.762-1.603-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.468-2.382 1.236-3.222-.124-.303-.536-1.523.116-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 6.004 0c2.29-1.552 3.297-1.23 3.297-1.23.654 1.653.242 2.873.118 3.176.77.84 1.236 1.912 1.236 3.222 0 4.61-2.805 5.624-5.476 5.92.43.372.81 1.102.81 2.222 0 1.604-.015 2.896-.015 3.29 0 .322.217.698.825.58C20.565 21.784 24 17.298 24 12 24 5.37 18.63 0 12 0z"/></svg>
+          <a target="_blank" href="https://github.com/rishabhsetiya">GitHub</a>
+        </span>
+        <span class="pill">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C3.33 3.5 2 4.84 2 6.5s1.33 3 2.98 3C6.64 9.5 8 8.16 8 6.5S6.64 3.5 4.98 3.5zM2.4 20h5.16V9.94H2.4V20zM9.76 9.94V20h5.16v-5.27c0-2.79 3.62-3.02 3.62 0V20h5.16v-6.3c0-6.67-7.49-6.42-8.78-3.15V9.94H9.76z"/></svg>
+          <a target="_blank" href="https://www.linkedin.com/in/rishabh-setiya">LinkedIn</a>
+        </span>
+        <span class="pill">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-1 5h2v2h-2V7zm0 4h2v6h-2v-6z"/></svg>
+          <a target="_blank" href="http://dx.doi.org/10.1016/B978-0-12-824446-3.00010-7">Publication DOI</a>
+        </span>
+      </div>
+    </section>
 
-<h3>My Hobbies</h3>
-<ol type='i'>
-  <li>Listening to music</li>
-  <li>Writing Poetry</li>
-  <li>Travelling and Exploring</li>
-</ol>
-
-<h3><a href="contact-me.html">Contact Me</a></h3>
-
+    <div class="footer">
+      <div>© <span id="y"></span> Rishabh Setiya • Built with a sprinkle of HTML &amp; CSS.</div>
+    </div>
+  </div>
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
